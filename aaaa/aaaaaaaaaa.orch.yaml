@@ -1,16 +1,78 @@
-type: orchestration
+type: "orchestration"
 version: "1.0"
 pipeline:
   components:
     Start:
-      type: start
+      type: "start"
+      transitions:
+        unconditional:
+        - "Create Table"
+        - "Create Table 2"
+      skipped: false
       parameters:
-        componentName: Start
-  variables: {}
+        componentName: "Start"
+    Create Table:
+      type: "create-table"
+      skipped: false
+      parameters:
+        componentName: "Create Table"
+        createReplace: "Create if not exists"
+        database: "[Environment Default]"
+        schema: "[Environment Default]"
+        newTableName: "aaaaa"
+        tableType: "Permanent"
+        columns:
+        - - "id"
+          - "NUMBER"
+          - "38"
+          - ""
+          - ""
+          - "No"
+          - "No"
+          - ""
+        defaultDdlCollation:
+        primaryKeys:
+        clusteringKeys:
+        dataRetentionTimeInDays:
+        comment:
+    Create Table 2:
+      type: "create-table"
+      skipped: false
+      parameters:
+        componentName: "Create Table 2"
+        createReplace: "Create if not exists"
+        database: "[Environment Default]"
+        schema: "[Environment Default]"
+        newTableName: "uuuuu"
+        tableType: "Permanent"
+        columns:
+        - - "name"
+          - "VARCHAR"
+          - "355"
+          - ""
+          - ""
+          - "No"
+          - "No"
+          - ""
+        defaultDdlCollation:
+        primaryKeys:
+        clusteringKeys:
+        dataRetentionTimeInDays:
+        comment:
 design:
   components:
     Start:
       position:
-        x: 0
-        y: 0
-  notes: {}
+        x: -410
+        "y": -50
+      tempMetlId: 1
+    Create Table:
+      position:
+        x: -260
+        "y": -50
+      tempMetlId: 2
+    Create Table 2:
+      position:
+        x: -290
+        "y": 40
+      tempMetlId: 3
